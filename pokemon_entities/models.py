@@ -1,17 +1,18 @@
 from django.db import models  # noqa F401
 
 class Pokemon(models.Model):
-    title = models.CharField(max_length=200)
-    title_en = models.CharField(max_length=200, blank=True)
-    title_jp = models.CharField(max_length=200, blank=True)
-    photo = models.ImageField(null=True)
-    description = models.TextField(blank=True)
+    title = models.CharField(max_length=200, verbose_name='Название')
+    title_en = models.CharField(max_length=200, blank=True, verbose_name='Название на английском')
+    title_jp = models.CharField(max_length=200, blank=True, verbose_name='Название на японском')
+    photo = models.ImageField(null=True, verbose_name='Изображение')
+    description = models.TextField(blank=True, verbose_name='Описание')
     previous_evolution = models.ForeignKey(
         'self',
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name='next_evolutions'
+        related_name='next_evolutions',
+        verbose_name='Предыдущая эволюция'
     )
 
     def __str__(self):
@@ -19,13 +20,18 @@ class Pokemon(models.Model):
 
 
 class PokemonEntity(models.Model):
-    lat = models.FloatField()
-    lon = models.FloatField()
-    pokemon = models.ForeignKey(Pokemon, on_delete=models.CASCADE, null=True)
-    appeared_at = models.DateTimeField(null=True)
-    disappeared_at = models.DateTimeField(null=True)
-    level = models.PositiveIntegerField(null=True)
-    health = models.PositiveIntegerField(null=True)
-    strength = models.PositiveIntegerField(null=True)
-    defence = models.PositiveIntegerField(null=True)
-    stamina = models.PositiveIntegerField(null=True)
+    lat = models.FloatField(verbose_name='Широта')
+    lon = models.FloatField(verbose_name='Долгота')
+    pokemon = models.ForeignKey(
+        Pokemon,
+        on_delete=models.CASCADE,
+        null=True,
+        verbose_name='Покемон'
+    )
+    appeared_at = models.DateTimeField(null=True, verbose_name='Время появления')
+    disappeared_at = models.DateTimeField(null=True, verbose_name='Время исчезновения')
+    level = models.PositiveIntegerField(null=True, verbose_name='Уровень')
+    health = models.PositiveIntegerField(null=True, verbose_name='Здоровье')
+    strength = models.PositiveIntegerField(null=True, verbose_name='Сила')
+    defence = models.PositiveIntegerField(null=True, verbose_name='Защита')
+    stamina = models.PositiveIntegerField(null=True, verbose_name='Выносливость')
