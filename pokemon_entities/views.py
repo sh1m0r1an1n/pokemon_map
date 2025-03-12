@@ -1,9 +1,9 @@
 import folium
 
 from django.http import HttpResponseNotFound
-from .models import Pokemon, PokemonEntity
 from django.shortcuts import render
 from django.utils import timezone
+from .models import Pokemon, PokemonEntity
 
 
 MOSCOW_CENTER = [55.751244, 37.618423]
