@@ -28,6 +28,7 @@ class PokemonEntity(models.Model):
         Pokemon,
         on_delete=models.CASCADE,
         null=True,
+        related_name='entities',
         verbose_name='Покемон'
     )
     appeared_at = models.DateTimeField(null=True, blank=True, default=timezone.now, verbose_name='Время появления')

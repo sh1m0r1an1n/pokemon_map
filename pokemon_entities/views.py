@@ -37,7 +37,7 @@ def show_all_pokemons(request):
 
     pokemon_ids = active_entities.values_list('pokemon_id', flat=True).distinct()
 
-    pokemons = Pokemon.objects.filter(id__in=pokemon_ids).prefetch_related('pokemonentity_set')
+    pokemons = Pokemon.objects.filter(id__in=pokemon_ids).prefetch_related('entities')
 
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
 
