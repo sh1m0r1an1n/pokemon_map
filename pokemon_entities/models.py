@@ -27,7 +27,6 @@ class PokemonEntity(models.Model):
     pokemon = models.ForeignKey(
         Pokemon,
         on_delete=models.CASCADE,
-        null=True,
         related_name='entities',
         verbose_name='Покемон'
     )
